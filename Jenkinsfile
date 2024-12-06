@@ -14,6 +14,14 @@ pipeline {
         SONAR_TOKEN = credentials('SONAR_TOKEN') // Secure SonarQube token
     }
     stages {
+        stage('SCM'){
+            steps{
+                git(
+                    url: 'https://github.com/mydummyrepo/spring-petclinic.git',
+                    branch: 'main'
+                )
+            }
+        }
         stage('Build and SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarcloud'){
