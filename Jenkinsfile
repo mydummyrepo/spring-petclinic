@@ -9,6 +9,7 @@ pipeline {
     tools{
         maven 'apache-maven-3.9.9'
         jdk 'openjdk-17-jdk'
+        jfrog 'jfrog-cli'
     }
     environment {
         SONAR_TOKEN = credentials('SONAR_TOKEN') // Secure SonarQube token
@@ -39,13 +40,11 @@ pipeline {
         }
         stage('Exec Maven commands') {
             steps {
-                dir('maven-examples/maven-example') {
-                    // Configure Maven project's repositories
+                // Configure Maven project's repositories
                     jf 'mvn-config --repo-resolve-releases ltdev-libs-release --repo-resolve-snapshots ltdev-libs-snapshot --repo-deploy-releases ltdev-libs-release-local --repo-deploy-snapshots ltdev-libs-snapshot-local'
 
                     // Install and publish project
                     jf 'mvn clean install'
-                }
             }
         }
 
