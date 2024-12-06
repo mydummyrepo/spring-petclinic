@@ -41,7 +41,7 @@ pipeline {
             steps {
                 dir('maven-examples/maven-example') {
                     // Configure Maven project's repositories
-                    jf 'mvn-config --repo-resolve-releases libs-release --repo-resolve-snapshots libs-snapshots --repo-deploy-releases libs-release-local --repo-deploy-snapshots libs-snapshot-local'
+                    jf 'mvn-config --repo-resolve-releases ltdev-libs-release --repo-resolve-snapshots ltdev-libs-snapshot --repo-deploy-releases ltdev-libs-release-local --repo-deploy-snapshots ltdev-libs-snapshot-local'
 
                     // Install and publish project
                     jf 'mvn clean install'
