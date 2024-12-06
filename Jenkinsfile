@@ -25,13 +25,13 @@ pipeline {
         stage('Build and SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarcloud'){
-                    sh """
+                    sh '''
                             mvn clean package sonar:sonar \
                             -Dsonar.organization=mydummyrepo \
                             -Dsonar.projectKey=mydummyrepo_spring-petclinic \
                             -Dsonar.host.url=https://sonarcloud.io \
                             -Dsonar.login=$SONAR_TOKEN
-                        """
+                        '''
                 }
             }
         }
